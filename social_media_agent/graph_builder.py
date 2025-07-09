@@ -7,17 +7,22 @@ from social_media_agent.services.relevance_node import RelevanceNode
 from social_media_agent.services.generator_node import GeneratorNode
 from social_media_agent.services.reviewer_node import ReviewerNode
 from social_media_agent.services.publisher_node import PublisherNode
+
+# Import your LLM client
+from social_media_agent.experiments.test_llm import OpenAIAsync  
 import inspect
 
 
 class GraphBuilder:
     def __init__(self):
+        self.llm = OpenAIAsync()  
+
         self.nodes = {
             "scrape": ScraperNode(),
             "validate": ValidatorNode(),
             "relevance": RelevanceNode(),
             "generate": GeneratorNode(),
-            "review": ReviewerNode(),
+            "review": ReviewerNode(llm=self.llm),  
             "publish": PublisherNode(),
         }
 
@@ -47,7 +52,7 @@ class GraphBuilder:
         def review_condition(state: OverallState) -> str:
             return {
                 "accept": "publish",
-                "edit": "publish",   
+                "edit": "publish",  # you can later redirect edited post through LLM if needed
                 "reject": END
             }.get(state["approved"], END)
 
