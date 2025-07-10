@@ -7,15 +7,13 @@ from social_media_agent.services.relevance_node import RelevanceNode
 from social_media_agent.services.generator_node import GeneratorNode
 from social_media_agent.services.reviewer_node import ReviewerNode
 from social_media_agent.services.publisher_node import PublisherNode
-
-# Import your LLM client
-from social_media_agent.experiments.test_llm import OpenAIAsync  
+from social_media_agent.models.llm_model import LLMModel 
 import inspect
 
 
 class GraphBuilder:
     def __init__(self):
-        self.llm = OpenAIAsync()  
+        self.llm = LLMModel()  
 
         self.nodes = {
             "scrape": ScraperNode(),
