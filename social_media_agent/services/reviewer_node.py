@@ -27,7 +27,7 @@ class ReviewerNode(BaseNode):
                 if not current_post.strip():
                     print("[ReviewerNode] Cannot approve empty post.")
                     continue
-                state["post"] = current_post  # save final post
+                state["post"] = current_post  
                 state["approved"] = "accept"
                 print("[ReviewerNode] Post approved.")
                 break

@@ -23,8 +23,3 @@ class RelevanceNode(BaseNode):
 
         return state
     
-# if __name__ == '__main__':
-#     newclas = RelevanceNode()
-#     state = {"content": " caliber shoes and also the shoes are made in nepal which is of very good quality, loved by people and everbody wears it like evryday."
-#     "It it very good for everyday use. I love the shoes. What is your take on it don't forget to rate it and use it ofcourse", "query": "dress"}
-#     result = newclas.run(state)

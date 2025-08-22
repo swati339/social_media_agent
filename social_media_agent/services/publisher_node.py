@@ -5,12 +5,12 @@ from social_media_agent.basemodel import BaseNode, OverallState
 
 class PublisherNode(BaseNode):
     """
-    Publishes the post to Twitter using Tweepy.
+    Publishes the post to Twitter using Tweepy with OAuth 2.0 user context.
     """
     def __init__(self):
         load_dotenv()
+
         self.client = tweepy.Client(
-            bearer_token=os.getenv("TWITTER_BEARER_TOKEN"),
             consumer_key=os.getenv("TWITTER_API_KEY"),
             consumer_secret=os.getenv("TWITTER_API_KEY_SECRETS"),
             access_token=os.getenv("TWITTER_ACCESS_TOKEN"),
@@ -20,9 +20,12 @@ class PublisherNode(BaseNode):
     def run(self, state: OverallState) -> OverallState:
         try:
             response = self.client.create_tweet(text=state["post"])
-            print("Tweet posted successfully. Tweet ID:", response.data.get("id"))
+
+            tweet_id = response.data.get("id")
+            print(f"Tweet posted successfully. Tweet ID: {tweet_id}")
             state["posted"] = True
+            state["tweet_id"] = tweet_id
         except Exception as e:
-            print("Failed to post tweet:", str(e))
+            print(f"Failed to post tweet: {e}")
             state["posted"] = False
         return state
