@@ -8,6 +8,7 @@ dependencies = [
     "colorlog>=6.9.0",
     "crawl4ai>=0.6.3",
     "fastapi>=0.115.12",
+    "fastmcp>=2.11.3",
     "ipykernel>=6.29.5",
     "langchain>=0.3.25",
     "langgraph>=0.4.7",

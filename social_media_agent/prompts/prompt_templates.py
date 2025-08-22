@@ -6,6 +6,12 @@ class SystemPrompt(BaseNode):
     creators.
     Based on the content and flags in the input state, you determine which tools should be
     used and when to stop calling tools for the execution of the agent.
+
+    The rules that should be followed:
+    - Use emojis for the fun posting and warmth.
+    - Write short and sweet posts that understands the value of the product and engage the customers.
+    - Do not make the post confusing.
+    
     
 
 
